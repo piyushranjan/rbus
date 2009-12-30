@@ -1,0 +1,39 @@
+!!! Strict
+%html{ html_attrs("en_us") }
+  %head
+    %title
+      rbus.in
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }/
+    %link{ :href => "/stylesheets/master.css", :rel => "stylesheet", :media => "screen", :type => "text/css", :charset => "utf-8" }/
+    = js_include_tag :jquery
+    = js_include_tag "jquery-autocomplete/jquery.autocomplete"
+    = js_include_tag :application
+    = css_include_tag "jquery.autocomplete"
+    %script{:type => "text/javascript"}
+  %body
+    #container
+      #header-container
+      #menu
+        = link_to image_tag('/images/rbus-logo.png', :border => "0px", :id => "logo"), "/", :border => "0px"
+        %span.small#nav
+          - unless session.authenticated?
+            Not logged in
+            = link_to "[login]", url(:login)
+          - else 
+            == Logged in as #{session.user.nick}
+            = link_to "[logout]", url(:logout)
+          = link_to "faq", "/faq"
+          = link_to "register your commute", url(:new_trip)
+
+      #main-container
+        - if message
+          #messages
+            - message.each do |key,value|
+              .flash{:class => key.to_s}
+                =value
+                %br
+        #main
+          = catch_content :for_layout
+      #news
+        = twitter_widget
+            

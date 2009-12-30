@@ -1,0 +1,33 @@
+%h3
+  Showing 0 - 10 of 25 trips
+
+%table
+  %tr
+    %thead
+      %th
+        Trip
+      %th
+        User
+      %th
+        On
+      %th
+        At
+      %th
+        Return
+      %th
+        Details
+  - @trips.each do |trip|
+    %tr{:class => cycle('odd','even')}
+      %td
+        == #{trip.start_stop.name} to #{trip.end_stop.name}
+      %td
+        = trip.user.nick
+      %td
+        = trip.on.to_s.gsub("_"," ")
+      %td
+        = trip.out_time
+      %td
+        = trip.in_time
+      %td
+        = link_to 'Show', resource(trip)
+

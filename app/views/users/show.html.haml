@@ -1,0 +1,13 @@
+%table
+  %thead
+    %tr
+      %td
+        %h1 
+          = @user.nick
+        - if session.user == @user
+          = link_to 'Edit Profile', resource(@user, :edit)
+  - @user.trips.each do |trip|
+    %tr
+      %td
+        = trip.description
+      

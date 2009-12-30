@@ -1,0 +1,16 @@
+%h1
+  Stops controller, index action
+%p
+  Edit this file in
+  %tt
+    app/views/stops/index.html.erb
+%table
+  %tr
+  - for stop in @stops
+    %tr
+      %td
+        = link_to 'Show', url(:stop, stop)
+      %td
+        = link_to 'Edit', url(:edit_stop,  stop)
+
+= link_to 'New', url(:new_stop)

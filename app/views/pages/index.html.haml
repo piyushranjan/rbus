@@ -1,0 +1,45 @@
+#lights
+#main
+  %h1
+    Mumbai
+  %h2
+    Are you ready for a new way to travel?
+  fast. safe. cheap. comfortable. convenient.
+  %br
+  it's not just a bus. it's rbus!
+  %p
+  %form#trip
+    %h2 Get started now!
+    = error_messages_for(@trip)
+    = form_for(@trip, :action => resource(:trips)) do
+      %table
+        %tr
+          %td
+            I go from
+          %td
+            = text_field :name => :from
+            = text_field :start_stop
+        %tr
+          %td
+            to
+          %td
+            = text_field :name => :to
+            = text_field :end_stop
+        %tr
+          %td
+            on
+          %td
+            = select :on, :collection => Trip.on.map{|m| [m.to_s, m.to_s.gsub("_"," ")]}
+        %tr
+          %td
+            at
+          %td
+            = text_field :out_time
+        %tr
+          %td
+            and back at
+          %td
+            = text_field :out_time
+      %input{ :type => "submit", :value => "Register My Trip", :style => "font-weight: bold" }
+      %a{ :href => "/faq", :style => "position: relative; top: 5px; left: 25px;font-size: 25px;" }
+        How it works?
