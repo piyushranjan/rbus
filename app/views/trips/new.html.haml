@@ -28,36 +28,36 @@
         %td
           I go from
         %td
-          = text_field :name => :from, :value => params[:from]
+          = text_field :name => :from, :value => params[:from], :class => "big"
           = hidden_field :start_stop_id
         %td{:rowspan => "2"}
       %tr
         %td
           to
         %td
-          = text_field :name => :to, :value => params[:to]
+          = text_field :name => :to, :value => params[:to], :class => "big"
           = hidden_field :end_stop_id
       %tr
         %td
           on
         %td
-          = select :on, :collection => Trip.on.map{|m| [m.to_s, m.to_s.gsub("_"," ")]}
+          = select :on, :collection => Trip.on.map{|m| [m.to_s, m.to_s.gsub("_"," ")]}, :class => "big"
       %tr
         %td
           at
         %td
-          = text_field :out_time
+          = text_field :out_time, :class => "big"
       %tr
         %td
           and back at
         %td
-          = text_field :in_time
+          = text_field :in_time, :class => "big"
       - unless session.authenticated?
         %tr
           %td
             email
           %td
-            = text_field :name => "user[login]", :value => (params[:user].nil? ? nil : params[:user][:login])
+            = text_field :name => "user[login]", :value => (params[:user].nil? ? nil : params[:user][:login]), :class => "big"
           %td{:style => "font-size: 12px"}
             (never disclosed)
         
@@ -65,7 +65,7 @@
           %td
             nickname
           %td
-            = text_field :name => "user[nick]", :value => params[:user].nil? ? nil : params[:user][:nick]
+            = text_field :name => "user[nick]", :value => params[:user].nil? ? nil : params[:user][:nick], :class => "big"
           %td{:style => "font-size: 12px"}
             (choose an anonymous handle)
 

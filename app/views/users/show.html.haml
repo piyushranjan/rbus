@@ -1,13 +1,10 @@
-%table
-  %thead
-    %tr
-      %td
-        %h1 
-          = @user.nick
-        - if session.user == @user
-          = link_to 'Edit Profile', resource(@user, :edit)
+%div{:style => "width: 65%;"}
+  %h1 
+    = @user.nick
+  %ul
   - @user.trips.each do |trip|
-    %tr
-      %td
-        = trip.description
+    %li
+      = trip.description
+      %br
+      = link_to "#{trip.nearby_trips.count} other trips like this", resource(trip)
       

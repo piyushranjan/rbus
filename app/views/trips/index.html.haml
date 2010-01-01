@@ -1,9 +1,9 @@
 %h3
   Showing 0 - 10 of 25 trips
 
-%table
-  %tr
-    %thead
+%table{:cellspacing => "0", :style => "background: white", :id=>"trips"}
+  %thead
+    %tr
       %th
         Trip
       %th
@@ -16,18 +16,31 @@
         Return
       %th
         Details
-  - @trips.each do |trip|
-    %tr{:class => cycle('odd','even')}
+    %tr{:style => "background: #8a765f"}
       %td
-        == #{trip.start_stop.name} to #{trip.end_stop.name}
+        Search trips from
+        = text_field :name => "from"
+        to
+        = text_field :name => "to"
+        = button 'Search', :onclick => "javascript:refresh_trips()"
       %td
-        = trip.user.nick
       %td
-        = trip.on.to_s.gsub("_"," ")
       %td
-        = trip.out_time
       %td
-        = trip.in_time
       %td
-        = link_to 'Show', resource(trip)
+  %tbody
+    - @trips.each do |trip|
+      %tr{:class => cycle('odd','even')}
+        %td
+          == #{trip.start_stop.name} to #{trip.end_stop.name}
+        %td
+          = trip.user.nick
+        %td
+          = trip.on.to_s.gsub("_"," ")
+        %td
+          = trip.out_time
+        %td
+          = trip.in_time
+        %td
+          = link_to 'Show', resource(trip)
 

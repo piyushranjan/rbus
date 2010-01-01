@@ -1,14 +1,18 @@
 %h1
-  Trip id:
-  = @trip.id
+  == #{@trip.start_stop.name} to #{@trip.end_stop.name} 
 %h2
-  == #{@trip.start_stop.name} to #{@trip.end_stop.name} by
+  by
   = link_to @trip.user.nick, resource(@trip.user)
 
 %p
   - if @trip.user == session.user
     = link_to 'delete this trip', resource(@trip, :delete)
 - @near = @trip.nearby_trips
+- @near.delete(@trip)
 = @near.count
 person(s) travel the same route.
-
+%ul
+- @near.each do |trip|
+  %li
+    = trip.description
+    = link_to 'Show', resource(trip)

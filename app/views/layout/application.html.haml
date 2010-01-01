@@ -7,6 +7,7 @@
     %link{ :href => "/stylesheets/master.css", :rel => "stylesheet", :media => "screen", :type => "text/css", :charset => "utf-8" }/
     = js_include_tag :jquery
     = js_include_tag "jquery-autocomplete/jquery.autocomplete"
+    = js_include_tag "jquery.tablesorter.min"
     = js_include_tag :application
     = css_include_tag "jquery.autocomplete"
     %script{:type => "text/javascript"}
@@ -23,6 +24,7 @@
             == Logged in as #{session.user.nick}
             = link_to "[logout]", url(:logout)
             = link_to "profile", resource(session.user)
+          = link_to "trips", resource(:trips)
           = link_to "faq", "/faq"
 
       #main-container

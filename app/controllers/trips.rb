@@ -1,11 +1,19 @@
 require 'md5'
 class Trips < Application
-  # provides :xml, :yaml, :js
-  before :ensure_is_owner, :exclude => [:index, :show]
+  provides :xml, :yaml, :js
+  before :ensure_authenticated, :only => [:my]
+  before :ensure_is_owner, :only => [:edit, :update, :delete, :destroy]
+
   def index
-    @trips = Trip.all
+    debugger
+    @start_stop = Stop.first(:name => params[:from]) unless params[:from].blank?
+    @end_stop = Stop.first(:name => params[:to]) unless params[:to].blank?
+    @start_trips = @start_stop.nil? ? Trip.all : @start_stop.nearby_stops.starts 
+    @end_trips = @end_stop.nil? ? Trip.all : @end_stop.nearby_stops.ends
+    @trips = @start_trips & @end_trips
     display @trips
   end
+
 
   def show(id)
     @trip = Trip.get(id)

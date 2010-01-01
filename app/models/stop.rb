@@ -16,6 +16,10 @@ class Stop
              :longitude.lte => longitude + 0.01)
   end
 
+  def nearby_trips
+    (nearby_stops.starts + nearby_stops.ends).uniq
+  end
+
   def self.popular_starts
     Trip.all.map{|t| t.start_stop}.inject(Hash.new(0)) { |h,v| h[v.id] += 1; h }
   end

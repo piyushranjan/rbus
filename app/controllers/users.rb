@@ -4,6 +4,16 @@ class Users < Application
     render
   end
 
+  def home
+    if session.user
+      @user = session.user
+      render :show
+    else
+      @trip = Trip.new
+      render :template => "trips/new"
+    end
+  end
+
   def show(id)
     @user = User.get(id)
     raise NotFound unless @user

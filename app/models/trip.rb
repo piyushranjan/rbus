@@ -27,7 +27,7 @@ class Trip
   end
 
   def nearby_trips
-    start_trips and end_trips
+    (start_trips & end_trips).uniq
   end
 
   def description
