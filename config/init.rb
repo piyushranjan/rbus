@@ -21,7 +21,6 @@ end
  
 Merb::BootLoader.after_app_loads do
   # This will get executed after your app's classes have been loaded.
- dependency 'tlsmail'
  
   # Activate SSL Support
   Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
@@ -30,8 +29,8 @@ Merb::BootLoader.after_app_loads do
   Merb::Mailer.config = {
     :host   => 'smtp.gmail.com',
     :port   => '587',
-    :user   => 'svs@rbus.in',
-    :pass   => 's8s4a7m2',
+    :user   => '',
+    :pass   => '',
     :auth   => :plain
   }
 
