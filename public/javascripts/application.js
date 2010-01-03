@@ -18,7 +18,8 @@ function refresh_trips() {
 $(document).ready( function() {
   $("#from").autocomplete("/stops.js", {
     formatItem: function(row){return row[0].split(",")[1]},
-    formatResult: function(row){return row[0].split(",")[1]}
+    formatResult: function(row){return row[0].split(",")[1]},
+    mustMatch: true
   });
   $("#from").result(function(event, data, formatted) {
 		      $("#trip_start_stop_id").val(data[0].split(",")[0]);
@@ -26,7 +27,8 @@ $(document).ready( function() {
 		    });
   $("#to").autocomplete("/stops.js", {
     formatItem: function(row){return row[0].split(",")[1]},
-    formatResult: function(row){return row[0].split(",")[1]}
+    formatResult: function(row){return row[0].split(",")[1]},
+    mustMatch: true
   });
   $("#to").result(function(event, data, formatted) {
     $("#trip_end_stop_id").attr("value",data[0].split(",")[0]);
