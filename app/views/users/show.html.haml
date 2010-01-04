@@ -8,5 +8,5 @@
     %li
       = trip.description
       %br
-      = link_to "#{trip.nearby_trips.count} other trips like this", resource(trip)
+      = link_to "#{trip.nearby_trips.count - 1} other trips like this", resource(trip)
       
