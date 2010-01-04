@@ -1,6 +1,8 @@
 %div{:style => "width: 65%;"}
   %h1 
     = @user.nick
+  - if @user == session.user
+    = link_to '[Edit]', resource(@user, :edit)
   %ul
   - @user.trips.each do |trip|
     %li
