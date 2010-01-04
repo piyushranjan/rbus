@@ -101,10 +101,15 @@ a {
 #faq { 
   margineft: 10%;
   margin-right: 10%;
-  background: #ccc;
-  padding: 5px;
+  background: white;
+  padding: 15px;
   font-size: 20px;
   letter-spacing: 0px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+#faq b {
+  font-family: Georgia;
 }
 
 .error {
@@ -246,6 +251,7 @@ background-image: url('error.png');
   width: 35%;
   border: solid 2px #6E838A;
   -moz-border-radius: 10px;
+  border-radius: 10px;
   top: -50px;
   padding: 10px;
 }

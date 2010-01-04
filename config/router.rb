@@ -38,8 +38,8 @@ Merb::Router.prepare do
   # This is fine for most cases.  If you're heavily using resource-based
   # routes, you may want to comment/remove this line to prevent
   # clients from calling your create or destroy actions with a GET
-  default_routes
   match('/profile').to(:controller => 'users', :action => 'home')
+  match('/:name').to(:controller => 'pages', :action => 'show')
   # Change this for your home page to be available at /
   match('/').to(:controller => 'users', :action =>'home')
 
