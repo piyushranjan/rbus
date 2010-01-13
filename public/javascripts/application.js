@@ -30,8 +30,8 @@ $(document).ready(function() {
       });
   $("#to").autocomplete("/stops.js", {
 	  formatItem: function(row){return row[0].split(",")[1]},
-	      formatResult: function(row){return row[0].split(",")[1]},
-	      mustMatch: true,
+	      formatResult: function(row){if(row){return row[0].split(",")[1]}},
+	      autofill: false,
 	      minChars: 3
   });
   $("#to").result(function(event, data, formatted) {
