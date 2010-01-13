@@ -5,7 +5,6 @@ class Trips < Application
   before :ensure_is_owner, :only => [:edit, :update, :delete, :destroy]
 
   def index
-    debugger
     @start_stop = Stop.first(:name => params[:from]) unless params[:from].blank?
     @end_stop = Stop.first(:name => params[:to]) unless params[:to].blank?
     @start_trips = @start_stop.nil? ? Trip.all : @start_stop.nearby_stops.starts 
@@ -36,15 +35,12 @@ class Trips < Application
   end
 
   def create(trip)
-    debugger
     unless session.authenticated?
       @user = User.new(params[:user])
       @user.password = MD5.hexdigest(@user[:login])[0..9]
       @user.password_confirmation = @user.password
-      debugger
       if @user.save
         session.user = @user
-        debugger
         Merb.run_later do
           send_mail(ContactMailer, :signup, {
                       :from => "svs@rbus.in",

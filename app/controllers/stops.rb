@@ -2,8 +2,8 @@ class Stops < Application
   provides :xml, :yaml, :js
 
   def index
-    if params[:q] 
-      @stops = Stop.all(:name.like => "%#{params[:q]}%")
+    if params[:q]
+      @stops = params[:q].length>2 ? Stop.all(:name.like => "%#{params[:q]}%") : []
     else
       @stops = Stop.all
     end

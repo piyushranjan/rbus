@@ -15,24 +15,30 @@ function refresh_trips() {
 	     }, "json");
 }
 
-$(document).ready( function() {
-  $("#from").autocomplete("/stops.js", {
-    formatItem: function(row){return row[0].split(",")[1]},
-    formatResult: function(row){return row[0].split(",")[1]},
-    mustMatch: true
-  });
-  $("#from").result(function(event, data, formatted) {
-		      $("#trip_start_stop_id").val(data[0].split(",")[0]);
-		      refresh_trips();
+$(document).ready(function() {
+	$("#from").autocomplete("/stops.js", {
+		formatItem: function(row){return row[0].split(",")[1]},
+		    formatResult: function(row){if(row){return row[0].split(",")[1]}},
+		    autofill: false,
+		    minChars: 3
 		    });
+	$("#from").result(function(event, data, formatted) {
+	  if(data){
+	      $("#trip_start_stop_id").val(data[0].split(",")[0]);
+	      refresh_trips();
+	  }
+      });
   $("#to").autocomplete("/stops.js", {
-    formatItem: function(row){return row[0].split(",")[1]},
-    formatResult: function(row){return row[0].split(",")[1]},
-    mustMatch: true
+	  formatItem: function(row){return row[0].split(",")[1]},
+	      formatResult: function(row){return row[0].split(",")[1]},
+	      mustMatch: true,
+	      minChars: 3
   });
   $("#to").result(function(event, data, formatted) {
-    $("#trip_end_stop_id").attr("value",data[0].split(",")[0]);
-    refresh_trips();
-  });
-});
+	  if(data){
+	      $("#trip_end_stop_id").attr("value",data[0].split(",")[0]);
+	      refresh_trips();
+	  }
+      });
+    });
 
